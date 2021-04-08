@@ -13,21 +13,25 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background-color:#403f3f;
-            background-image:url("/static/img/back.jpg");
+			/*background-color:#403f3f;*/
+			background: linear-gradient(to left,#fea445,#fc663a);
+            /*background-image:url("/static/img/back.jpg");*/
             background-position: center;
             background-attachment:fixed;
             background-repeat: no-repeat;
+            font-family:"Roboto", sans-serif;
+            font-weight: bold;
 		}
 		.bg-dark{
-			background-color: #4f868c!important;
+			background-color: #fff!important;
 		}
-		@font-face {
+		/*@font-face {
 			font-family: F1;
 			src: url("/static/fonts/Painting_With_Chocolate.ttf");
-		}
+		}*/
 		.title-font{
-			font-family: F1;
+			font-family: "Roboto", sans-serif;
+
 		}
 		.user_card {
 			width: 350px;
@@ -52,13 +56,15 @@
 
 		#form-title{
 			color: black;
-
+			font-size: 2.5rem;
+			font-weight:bold;
 		}
 
 		.login_btn {
 			width: 100%;
 			background: #33ccff !important;
 			color: white !important;
+			font-size: 1.5rem;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
@@ -89,17 +95,18 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar bg-dark mainmenu" style="color:#85C1E9;">
-  <a class="title-font" style="font-size: 50px; color: black" href="{% url 'index'%}">Safar</a>
+<nav class="navbar navbar-expand-lg navbar bg-dark mainmenu" style="color:#fff;">
+  <a class="title-font" style="font-size: 50px; color: black" href="{% url 'index'%}"><img src="{%static "img/logo.png"%}"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     </ul>
     <div class="form-inline my-2 my-lg-0">
-        <a id="user-type"   style="font-size: 40px; color: black" class="title-font" href="{% url 'Signin'%}"></a>
+        <a style="font-size: 1.5rem; color: black" class="title-font btn btn-warning" href="{% url 'Signin'%}">User Login</a>
 	    </div>
   </div>
 </nav>
