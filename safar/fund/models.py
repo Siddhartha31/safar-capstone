@@ -26,14 +26,16 @@ class Admin(models.Model):
         return str(self.admin_username)
 
 
-
 def get_file_address(instance, filename):
     return '/'.join(['supporting',str(instance.account_id),str(instance.uuid), filename])
 
 class Request(models.Model):
     CATEGORY = (
         ('MEDICAL', 'MEDICAL'),
+        ('LITERACY AND EDUCATION', 'LITERACY AND EDUCATION'),
+        ('HUMAN RIGHTS', 'HUMAN RIGHTS'),
         ('PHYSICAL HELP', 'PHYSICAL HELP'),
+        ('POVERTY', 'POVERTY'),
         ('OTHER', 'OTHER')
     )
     STATUS = (

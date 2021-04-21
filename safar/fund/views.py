@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
+
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .decoraters import unauthenticated_user, allowed_users
 from django.contrib import messages
 from .models import *
 from .forms import CreateUserForm
 
- 
+
+@unauthenticated_user
 def sign_in(request):
     if request.method == 'POST':
         user = request.POST.get('username')
@@ -28,6 +32,7 @@ def sign_in(request):
     return render(request, 'fund/Sign_in.html', context)
 
 
+@unauthenticated_user
 def sign_up(request):
     form = CreateUserForm()
     if request.method == 'POST':
@@ -56,17 +61,17 @@ def sign_up(request):
     return render(request, 'fund/Sign_up.html', params)
 
 
+@unauthenticated_user
 def admin_sign_in(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password1 = request.POST.get('password')
-        print(username, password1)
         user = authenticate(username=username, password=password1)
         if user is not None:
             try:
                 admin = Admin.objects.get(admin_username=user)
                 login(request, user)
-                return redirect('index')
+                return redirect('Admin')
             except Admin.DoesNotExist:
                 messages.error(request, 'You are not an Admin')
                 return redirect('AdminSignin')
@@ -76,6 +81,22 @@ def admin_sign_in(request):
     params = {}
     return render(request, 'fund/admin_sign_in.html', params)
 
+
+@login_required(login_url='Signin')
+def sign_out(request):
+    logout(request)
+    return redirect('Signin')
+
+
+@login_required(login_url='AdminSignin')
+def admin_sign_out(request):
+    logout(request)
+    return redirect('AdminSignin')
+
+
+@login_required(login_url='Signin')
+def access_denied(request):
+    return render(request, 'fund/access-deny.html')
 
 
 def index(request):
@@ -90,10 +111,39 @@ def contact(request):
     context={}
     return render(request, 'fund/contact.html', context)
 
+@login_required(login_url='Signin')
+@allowed_users(allowed_roles=['Account'])
 def causes(request):
     context={}
     return render(request, 'fund/causes.html', context)
 
+@login_required(login_url='Signin')
+@allowed_users(allowed_roles=['Account'])
 def causes_details(request):
     context={}
     return render(request, 'fund/causes-details.html', context)
+
+@login_required(login_url='AdminSignin')
+@allowed_users(allowed_roles=['Admin'])
+def admin(request):
+    context={}
+    return render(request, 'fund/admin_index.html', context)
+
+
+@login_required(login_url='AdminSignin')
+@allowed_users(allowed_roles=['Admin'])
+def admin_profile(request):
+    context={}
+    return render(request, 'fund/admin_profile.html', context)
+
+
+@login_required(login_url='AdminSignin')
+@allowed_users(allowed_roles=['Admin'])
+def admin_requests(request):
+    admin = Admin.objects.get(admin_username=request.user)
+    req = Request.objects.all().filter(status='PENDING')
+    params = {
+        "requests": req
+    }
+    return render(request, 'fund/admin_requests.html', params)
+

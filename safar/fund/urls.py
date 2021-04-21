@@ -10,6 +10,11 @@ urlpatterns = [
     path('causes-details', views.causes_details, name="causes-details"),
     path('sign-in', views.sign_in, name="Signin"),
     path('sign-up', views.sign_up, name="SignUp"),
-    path('adminSignin', views.admin_sign_in, name="AdminSignin")
+    path('signout', views.sign_out, name="Signout"),
+    path('admin/Signin', views.admin_sign_in, name="AdminSignin"),
+    path('admin/Signout', views.admin_sign_out, name='AdminSignout'),
+    path('admin', views.admin, name="Admin"),
+    path('admin/profile', views.admin_profile, name="AdminProfile"),
+    path('admin/requests', views.admin_requests, name="AdminRequests")
 ]
 
