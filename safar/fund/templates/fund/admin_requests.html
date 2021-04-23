@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>SAFAR :: All Requests</title>
-    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.ico" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'assets/img/favicon.ico'%}" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
@@ -87,7 +87,7 @@
                 <ul class="navbar-nav theme-brand flex-row  text-center">
                     <li class="nav-item theme-logo">
                         <a href="{% url 'Admin' %}">
-                            <img src="{% static 'assets/img/90x90.jpg'%}" class="navbar-logo" alt="logo">
+                            <img src="{% static 'assets/img/favicon.ico'%}" class="navbar-logo" alt="logo">
                         </a>
                     </li>
                     <li class="nav-item theme-text">
@@ -111,31 +111,13 @@
                         </a>
                         <ul class="collapse submenu recent-submenu mini-recent-submenu list-unstyled show" id="dashboard" data-parent="#accordionExample">
                             <li>
-                                <a href="index.html"> Analytics </a>
+                                <a href="{% url 'Admin' %}"> Analytics </a>
                             </li>
                             <li class="active">
-                                <a href="requests.html"> Requests </a>
+                                <a href="{% url 'AdminRequests' %}"> Requests </a>
                             </li>
                         </ul>
                     </li>                    
-
-                    <li class="menu" hidden>
-                        <a href="#users" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                <span>User</span>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled" id="users" data-parent="#accordionExample">
-                            <li>
-                                <a href="user_profile.html"> Profile </a>
-                            </li>
-                           
-                        </ul>
-                    </li>
                 </ul>
                 
             </nav>
@@ -181,7 +163,7 @@
                                                 <div id="unread-promotion-page" class="mail-item mailInbox" >
                                                     <div class="animated animatedFadeInUp fadeInUp" id="mailHeadingThree">
                                                         <div class="mb-0">
-                                                            <div class="mail-item-heading social collapsed"  data-toggle="collapse" role="navigation" data-target="#mailCollapseThr" aria-expanded="false">
+                                                            <div class="mail-item-heading social collapsed"  data-toggle="collapse" role="navigation" data-target="#request{{request.id}}" aria-expanded="false">
                                                                 <div class="mail-item-inner">
 
                                                                     <div class="d-flex">
@@ -225,7 +207,7 @@
                                                 <h2 class="mail-title" data-selectedMailTitle=""></h2>
                                             </div>
                                             {% for request in requests %}
-                                            <div id="mailCollapseThr" class="collapse" aria-labelledby="mailHeadingThree" data-parent="#mailbox-inbox">
+                                            <div id="request{{request.id}}" class="collapse" aria-labelledby="mailHeadingThree" data-parent="#mailbox-inbox">
                                                 <div class="mail-content-container mailInbox" data-mailfrom="info@mail.com" data-mailto="linda@mail.com" data-mailcc="">
 
                                                     <div class="d-flex justify-content-between">
@@ -237,8 +219,8 @@
                                                                 </div>
                                                                 <div class="meta-mail-time">
                                                                     <p class="user-email" data-mailto="laurieFox@mail.com">{{request.account_id.email}}</p>
-                                                                    <p class="mail-content-meta-date current-recent-mail">12/14/2019 -</p>
-                                                                    <p class="meta-time align-self-center">2:00 PM</p>
+                                                                    &nbsp
+                                                                    <p class="meta-time align-self-center">{{request.pub_date}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -250,16 +232,21 @@
                                                         
                                                     </div>
 
-                                                    <p class="mail-content" data-mailTitle="Request Page" data-maildescription='{"ops":[{"insert":"...\n"}]}'> 
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
-                                                    Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
-                                                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. 
-                                                    Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </p>
+                                                    <p class="mail-content"  data-mailTitle="Request Page">
+                                                        <pre style="font-size:1em;">
+                                                        REQUEST ID       : {{request.id}}<br>
+                                                        NAME             : {{request.account_id.username}}<br>
+                                                        REQUEST CATEGORY : {{request.request_category}}<br>
+                                                        REQUEST AMOUNT   : {{request.amount}}<br>
+                                                        
+                                                        </pre></p>
+                                                        <p class="mail-content"> DESCRIPTION : {{request.desc}}<br> </p>
+
 
                                                     <div class="gallery text-center">
-                                                        <img alt="image-gallery" src="{% static 'assets/img/350x250.jpg'%}" class="img-fluid mb-4 mt-4" style="width: 250px; height: 180px;">
-                                                        <img alt="image-gallery" src="{% static 'assets/img/350x250.jpg'%}" class="img-fluid mb-4 mt-4" style="width: 250px; height: 180px;">
-                                                        <img alt="image-gallery" src="{% static 'assets/img/350x250.jpg'%}" class="img-fluid mb-4 mt-4" style="width: 250px; height: 180px;">
+                                                        <img alt="image-gallery" src="/supporting/{{request.identity_image}}" class="img-fluid mb-4 mt-4" style="width: 300px; height: 300px;">&nbsp                                                        
+                                                        <img alt="image-gallery" src="/supporting/{{request.image1}}" class="img-fluid mb-4 mt-4" style="width: 300px; height: 300px;">&nbsp
+                                                        <img alt="image-gallery" src="/supporting/{{request.image2}}" class="img-fluid mb-4 mt-4" style="width: 300px; height: 300px;">&nbsp
                                                     </div>
 
                                                 </div>
@@ -329,15 +316,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button id="btn-save" class="btn float-left"> Save</button>
-                                                <button id="btn-reply-save" class="btn float-left"> Approve</button>
-                                                <button id="btn-fwd-save" class="btn float-left"> Save Fwd</button>
-
-                                                <button class="btn" data-dismiss="modal"> <i class="flaticon-delete-1"></i> Update </button>
-
-                                                <button id="btn-reply" class="btn btn-warning"> Reject</button>
-                                                <button id="btn-fwd" class="btn"> Forward</button>
-                                                <button id="btn-send" class="btn"> Send</button>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -363,29 +342,24 @@
                         </div>
                             <form action="{{window.location.href}}" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
-                        <div class="modal-body">
-                            <input class="form-control mb-2" type="text" value = "Admin Username: {{request.user.admin}}" readonly>
-                            <input id="request-id" class="form-control mb-2" type="text" value = "" readonly>
-                            <div class="row">
-                                <div class="col">
-                                <div class="form-group">
-                                    <select class="form-control" id="Category" name="category">
+                                <div class="modal-body">
+                                    Admin Username: 
+                                    <input class="form-control mb-2"  type="text" value = "{{request.user.admin}}" readonly>
+                                    Request ID: <input id="requestId" name="requestId" class="form-control mb-2" type="text" value = "" readonly/>
+                                    Action: 
+                                    <select class="form-control" id="action" name="action">
                                         <option>UPDATE</option>
                                         <option>REJECT</option>
                                         <option>APPROVE</option>
-                                    </select>
+                                    </select><br>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="desc" name="desc" placeholder="Admin message//" rows="2"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                    </form>
                                 </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <textarea class="form-control" id="desc" name="desc" placeholder="Admin message//" rows="2"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                            </form>
-                        </div>
                         </div>
                     </div>
                     </div>
@@ -417,10 +391,7 @@
     <script>
      function get_request_id(value)
     {
-        document.getElementById("#request-id").innerHTML = "Paragraph changed!";
-
-        console.log(value)
-        $('#request-id').html(value.attr('value')); 
+        $('#requestId').val(value)
     }
     </script>
     <script src="{% static 'assets/js/libs/jquery-3.1.1.min.js'%}"></script>

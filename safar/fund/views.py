@@ -7,6 +7,7 @@ from .decoraters import unauthenticated_user, allowed_users
 from django.contrib import messages
 from .models import *
 from .forms import CreateUserForm
+from django.db.models import Q
 
 
 @unauthenticated_user
@@ -133,13 +134,39 @@ def admin(request):
 @login_required(login_url='AdminSignin')
 @allowed_users(allowed_roles=['Admin'])
 def admin_profile(request):
-    context={}
-    return render(request, 'fund/admin_profile.html', context)
+    admin = Admin.objects.get(admin_username=request.user)
+    acc = admin.accept_set.all().filter(Q(request_id__status='ACCEPTED') | Q(request_id__status='CANCELLED') | Q(request_id__status='COMPLETED'))
+    
+    params = {
+        "requests": acc
+    }
+    return render(request, 'fund/admin_profile.html', params)
 
 
 @login_required(login_url='AdminSignin')
 @allowed_users(allowed_roles=['Admin'])
 def admin_requests(request):
+    if request.method == 'POST':
+        admin = Admin.objects.get(admin_username=request.user)
+        requestId = request.POST['requestId']
+        action = request.POST['action']
+        admin_message = request.POST['desc']
+        req = Request.objects.get(id=requestId)
+        acc, created = Accept.objects.get_or_create(request_id=req)
+        acc.admin_id = admin
+        acc.save()
+    
+        if action == 'UPDATE':
+            req.admin_msg = admin_message
+        else:
+            if action == 'APPROVE':
+                req.status='ACCEPTED'
+                req.admin_msg = admin_message
+            else:
+                req.status = 'CANCELLED'
+                req.admin_msg = admin_message
+        req.save()
+
     admin = Admin.objects.get(admin_username=request.user)
     req = Request.objects.all().filter(status='PENDING')
     params = {

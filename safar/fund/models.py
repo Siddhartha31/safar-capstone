@@ -27,7 +27,7 @@ class Admin(models.Model):
 
 
 def get_file_address(instance, filename):
-    return '/'.join(['supporting',str(instance.account_id),str(instance.uuid), filename])
+    return '/'.join([str(instance.account_id.username),str(instance.uuid), filename])
 
 class Request(models.Model):
     CATEGORY = (
@@ -61,11 +61,33 @@ class Request(models.Model):
     
     def __str__(self):
         return str(self.id)
+    
+    def image1URL(self):
+        try:
+            url = self.image1.url
+            print(url)
+        except:
+            url = ''
+        return url
+
+    def image2URL(self):
+        try:
+            url = self.image2.url
+        except:
+            url = ''
+        return url
+    
+    def identity_imageURL(self):
+        try:
+            url = self.identity_image.url
+        except:
+            url = ''
+        return url
+    
 
 
 class Accept(models.Model):
-    request_id = models.ForeignKey(Request, on_delete=models.CASCADE, null=True)
-    account_id = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
+    request_id = models.OneToOneField(Request, on_delete=models.CASCADE, null=True)
     admin_id = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True)
 
 
