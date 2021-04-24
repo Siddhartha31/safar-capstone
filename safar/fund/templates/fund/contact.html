@@ -67,7 +67,17 @@
               <ul class="main-menu nav justify-content-center">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a  href="{% url 'about' %}">About Us</a></li>
-                <li><a  href="{% url 'causes' %}">Causes</a></li>
+                <li class="has-submenu"><a href="{% url 'causes' %}">Causes</a>
+                  <ul class="submenu-nav">
+                    <li><a href="{% url 'causes' %}">All</a></li>
+                    <li><a href="{% url 'causes' %}?category=MEDICAL">MEDICAL</a></li>
+                    <li><a href="{% url 'causes' %}?category=LITERACY AND EDUCATION">LITERACY AND EDUCATION</a></li>
+                    <li><a href="{% url 'causes' %}?category=HUMAN RIGHTS">HUMAN RIGHTS</a></li>
+                    <li><a href="{% url 'causes' %}?category=PHYSICAL HELP">PHYSICAL HELP</a></li>
+                    <li><a href="{% url 'causes' %}?category=POVERTY">POVERTY</a></li>
+                    <li><a href="{% url 'causes' %}?category=OTHER">OTHER</a></li>
+                  </ul>
+                </li>
                 <li class="active"><a  href="{% url 'contact' %}">Contact Us</a></li>
               </ul>
             </div>

@@ -130,7 +130,8 @@ def causes(request):
 @allowed_users(allowed_roles=['Account'])
 def causes_details(request, pk):
     if request.method == 'POST':
-	    return redirect('payment')
+        print(request)
+        return redirect('payment')
     req = Request.objects.get(id=pk)
     params = {
         "request": req

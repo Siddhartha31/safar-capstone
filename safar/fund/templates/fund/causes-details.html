@@ -72,7 +72,19 @@
               <ul class="main-menu nav justify-content-center">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a  href="{% url 'about' %}">About Us</a></li>
-                <li class="active"><a  href="{% url 'causes' %}">Causes</a></li>
+                <li class="nav-item dropdown active">
+                  <li class="has-submenu nav-item dropdown active"><a href="{% url 'causes' %}">Causes</a>
+                  <ul class="submenu-nav">
+                    <li><a href="{% url 'causes' %}">All</a></li>
+                    <li><a href="{% url 'causes' %}?category=MEDICAL">MEDICAL</a></li>
+                    <li><a href="{% url 'causes' %}?category=LITERACY AND EDUCATION">LITERACY AND EDUCATION</a></li>
+                    <li><a href="{% url 'causes' %}?category=HUMAN RIGHTS">HUMAN RIGHTS</a></li>
+                    <li><a href="{% url 'causes' %}?category=PHYSICAL HELP">PHYSICAL HELP</a></li>
+                    <li><a href="{% url 'causes' %}?category=POVERTY">POVERTY</a></li>
+                    <li><a href="{% url 'causes' %}?category=OTHER">OTHER</a></li>
+                  </ul>
+                </li>
+                </li>
                 <li><a  href="{% url 'contact' %}">Contact Us</a></li>
               </ul>
             </div>
@@ -368,48 +380,48 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-		<form action="{{window.location.href}}" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-      <div class="modal-body">
-      Request Id: 
-        <input class="form-control mb-2" id="requestId" type="text" value = {{request.id}} readonly>
-		  <div class="row">
-			<div class="col">
-			  <div class="form-group">
-				<input class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
-			  </div>
-			</div>
+		  <form action="{{window.location.href}}" method="POST" enctype="multipart/form-data">
+			  {% csrf_token %}
+        <div class="modal-body">
+          Request Id: 
+          <input class="form-control mb-2" id="requestId" type="text" value = {{request.id}} readonly>
+		      <div class="row">
+            <div class="col">
+              <div class="form-group">
+              <input class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+              </div>
+            </div>
 
-			  <div class="col">
-				  	<div class="form-group" style="display: inline-block; float: left">
-						<input class="form-control" id="remaining" type="text" value = {{request.remaining}} readonly>
-		  			</div>
-			  </div>
-		    </div>
+            <div class="col">
+                <div class="form-group" style="display: inline-block; float: left">
+                <input class="form-control" id="remaining" type="text" value = {{request.remaining}} readonly>
+                </div>
+            </div>
+		      </div>
         
-		  <div class="form-group">
-			<input class="form-control" id="card-details" name="card-details" placeholder="Enter card details" >
-		  </div>
-      <div class="row">
-			<div class="col">
-			  <div class="form-group">
-				<input class="form-control" id="cvv" name="cvv" placeholder="Enter cvv" >
-			  </div>
-			</div>
+		      <div class="form-group">
+            <input class="form-control" id="card-details" name="card-details" placeholder="Enter card details" >
+		      </div>
+          <div class="row">
+			      <div class="col">
+			        <div class="form-group">
+				        <input class="form-control" id="cvv" name="cvv" placeholder="Enter cvv" >
+			        </div>
+			      </div>
 
-			  <div class="col">
-				  	<div class="form-group" style="display: inline-block; float: left">
-						<input class="form-control" id="expiry" name="expiry" placeholder="Enter expiry" >
-		  			</div>
-			  </div>
-		    </div>
+            <div class="col">
+                <div class="form-group" style="display: inline-block; float: left">
+                  <input class="form-control" id="expiry" name="expiry" placeholder="Enter expiry" >
+                </div>
+            </div>
+		      </div>
       
-			  <div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			  </div>
-		</form>
-	</div>
-
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+		  </form>
+	  </div>
 	</div>
 </div>
 
