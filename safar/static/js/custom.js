@@ -242,7 +242,6 @@
     AOS.init({
       once: true,
     });
-    stylePreloader();
   });
   
 

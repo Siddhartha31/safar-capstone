@@ -5463,7 +5463,7 @@ table p {
 }
 .causes-item .content .donate-info .info-item .amount {
   color: #fc6539;
-  font-size: 20px;
+  font-size: 15px;
   background: #FEA444;
   background: linear-gradient(to left, #FEA444 0%, #FC6539 100%);
   -webkit-background-clip: text;
@@ -5471,7 +5471,7 @@ table p {
 }
 @media only screen and (max-width: 1199px) {
   .causes-item .content .donate-info .info-item .amount {
-    font-size: 15px;
+    font-size: 8px;
   }
 }
 .causes-item .content .donate-info .info-item:hover {
@@ -5483,7 +5483,6 @@ table p {
   -webkit-text-fill-color: #fff;
 }
 .causes-item .content .title {
-  font-size: 22px;
   line-height: 1.455;
   margin-bottom: 8px;
 }
@@ -5590,7 +5589,7 @@ table p {
 }
 
 .causes-details-area {
-  padding: 150px 0 391px;
+  padding: 25px 0 391px;
 }
 @media only screen and (max-width: 1199px) {
   .causes-details-area {
@@ -5701,7 +5700,6 @@ table p {
 }
 .causes-details .donate-info .info-item .amount {
   color: #fc6539;
-  font-size: 20px;
   background: #FEA444;
   background: linear-gradient(to left, #FEA444 0%, #FC6539 100%);
   -webkit-background-clip: text;
@@ -10138,7 +10136,7 @@ table p {
   background-color: #f7f7f7;
   margin: 0px auto -175px;
   max-width: 1555px;
-  padding: 152px 0 80px;
+  padding: 0 0 80px;
   position: relative;
   z-index: 1;
   transform: translate(0, -240px);

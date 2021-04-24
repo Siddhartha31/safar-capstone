@@ -15,9 +15,13 @@
     <!--== Google Fonts ==-->
     <link href="https://fonts.googleapis.com/css?family=Yeseva+One:400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,700i" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!--== Bootstrap CSS ==-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
     <!--== Icofont CSS ==-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/icofont.css' %}">
     <!--== ElegantIcons CSS ==-->
@@ -78,7 +82,7 @@
                 <span></span>
                 <span></span>
               </button>
-              <a href="{% url 'Signin' %}" class="btn-theme btn-gradient btn-slide btn-style">Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
+              <a href="{% url 'Signout' %}" class="btn-theme btn-gradient btn-slide btn-style">Sign-Out <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
             </div>
           </div>
         </div>
@@ -96,6 +100,7 @@
             <div class="page-title-content text-center">
               <h2 class="title text-white">Causes Details</h2>
               <div class="bread-crumbs"><a href="index.html">Home<span class="breadcrumb-sep">//</span></a><span class="active">Cause</span></div>
+              
             </div>
           </div>
         </div>
@@ -112,24 +117,25 @@
               <div class="causes-details-content">
                 <div class="causes-details">
                   <div class="thumb">
-                    <img class="w-100" src="{% static 'img/causes/022.jpg'%}" alt="Image-Givest">
+                    <img class="w-100" src="{% static '/img/causes/' %}{{request.dpimage}}.jpg" alt="Image-safar" >
                   </div>
-                  <h3 class="cause-title">Children Education Needs For Change <br>The World.</h3>
+                  <h4 class="cause-title">Request Category: {{request.request_category}}.</h4>
+                  
                   <div class="donate-info-wrp">
                     <div class="row">
                       <div class="col-md-6">
                         <ul class="donate-info">
                           <li class="info-item">
                             <span class="info-title">Goal:</span>
-                            <span class="amount">₹ 5,000</span>
+                            <span class="amount">₹ {{request.amount}}</span>
                           </li>
                           <li class="info-item">
                             <span class="info-title">Raised:</span>
-                            <span class="amount">₹ 2,000</span>
+                            <span class="amount">₹ {{request.collected}}</span>
                           </li>
                           <li class="info-item">
                             <span class="info-title">To Go:</span>
-                            <span class="amount">₹ 1,000</span>
+                            <span class="amount">₹ {{request.remaining}}</span>
                           </li>
                         </ul>
                       </div>
@@ -137,192 +143,53 @@
                         <!-- Start Progress Item -->
                         <div class="progress-item">
                           <div class="progress-line">
-                            <div class="progress-bar-line" data-percent="90%"><span class="percent"></span></div>
+                            <div class="progress-bar-line" data-percent="{{request.percent}}%"><span class="percent"></span></div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <hr>
+                    <a class="btn-theme btn-gradient btn-slide btn-style" data-toggle="modal" data-target="#AddProduct">Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon" ></a>
+                  
                   </div>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged was popularised in the 1960s with the release of etraset sheets containing Lorem Ipsum passages.</p>
-                  <p class="mb-26">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  <h3>Cause Challenge</h3>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged was popularised in the 1960s with the release of etraset sheets containing Lorem Ipsum passages.</p>
-                  <p class="mb-26">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  <h3>Summery And Documents</h3>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="document-item mb-xs-10">
-                        <h4>Documents.pdf</h4>
-                        <img src="{% static 'img/icons/file.png'%}" alt="Icon">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="document-item bgcolor-theme2">
-                        <h4>Documents.pdf</h4>
-                        <img  src="{% static 'img/icons/file.png'%}" alt="Icon">
-                      </div>
-                    </div>
+                  <h4>Cause Description:</h4>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when
+                   an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
+                   electronic typesetting, remaining essentially unchanged was popularised in the 1960s with the release of etraset sheets containing Lorem Ipsum passages.</p>
+                  <h4>Summery And Documents</h4>
+                  <div class="gallery text-center">
+                      <img alt="image-gallery" src="/supporting/{{request.identity_image}}" class="img-fluid mb-4 mt-4" style="width: 220px; height: 220px;">&nbsp                                                        
+                      <img alt="image-gallery" src="/supporting/{{request.image1}}" class="img-fluid mb-4 mt-4" style="width: 220px; height: 220px;">&nbsp
+                      <img alt="image-gallery" src="/supporting/{{request.image2}}" class="img-fluid mb-4 mt-4" style="width: 220px; height: 220px;">&nbsp
                   </div>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged was popularised in the 1960s with the release of etraset sheets containing Lorem Ipsum passages.</p>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                  <p></p>
+                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when
+                   an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
-                <div class="donners-info">
-                  <h3>Great Donners</h3>
-                  <div class="donners-item">
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner1.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner2.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner3.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img  src="{% static 'img/photos/donner4.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner2.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner3.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner5.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner3.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner1.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img  src="{% static 'img/photos/donner2.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner3.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner1.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item">
-                      <img src="{% static 'img/photos/donner2.png'%}" alt="Image-Givest">
-                    </div>
-                    <div class="donner-item donner-number">+286</div>
-                  </div>
-                </div>
-                <div class="donation-form bgcolor-theme3">
-                  <div class="section-title">
-                    <h5 class="subtitle line-theme-color mb-14">Make A Donation</h5>
-                    <h2 class="title text-white">Donate Now</h2>
-                    <img class="line-shape" src="{% static 'img/shape/line-t3.png'%}" alt="Image-Givest">
-                  </div>
-                  <form action="#">
-                    <div class="amount-info">
-                      <div class="donate-amount">₹20</div>
-                      <div class="donate-amount">₹50</div>
-                      <div class="donate-amount">₹200</div>
-                      <div class="donate-amount donate-custom-amount">
-                        <input class="form-control" type="text" placeholder="Custom">
-                      </div>
-                    </div>
-                    <div class="payment-method-wrp">
-                      <h4>Payment Method:</h4>
-                      <div class="payment-method">
-                        <div class="payment-type">
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">Offline</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label" for="inlineRadio2">Credit Card</label>
-                          </div>
-                        </div>
-                        <img src="{% static 'img/photos/payment-card.png'%}" alt="Image-Givest">
-                      </div>
-                    </div>
-                    <div class="personal-info">
-                      <h4>Personal Info:</h4>
-                      <div class="row row-gutter-20">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <input class="form-control" type="text" name="con_name" placeholder="Name">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <input class="form-control" type="email" name="con_email" placeholder="Email">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <input class="form-control" type="text" name="con_phone" placeholder="Phone">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <input class="form-control" type="text" name="con_address" placeholder="Address">
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group mb-0">
-                            <textarea class="form-control textarea" name="con_message" placeholder="Message"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="btn-wrp">
-                      <a href="#/" class="btn-theme btn-gradient btn-slide">Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
-                      <a href="#/" class="btn-theme btn-gradient btn-border">Total Donation: ₹50</a>
-                    </div>
-                  </form>
-                  <div class="layer-style">
-                    <img class="layer-style1" src="{% static 'img/shape/form-shape1.png'%}" alt="Image-Givest">
-                    <img class="layer-style2" src="{% static 'img/shape/form-shape2.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
+                
               </div>
               <div class="sidebar-area">
                 <div class="widget">
-                  <h3 class="widget-title">Search Here</h3>
-                  <div class="separator-line">
-                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-Givest">
-                  </div>
-                  <div class="widget-search-box">
-                    <form action="#" method="post">
-                      <div class="form-input-item">
-                        <label for="search2" class="sr-only">Search Here</label>
-                        <input type="text" id="search2" placeholder="Search here">
-                        <button type="submit" class="btn-src">
-                          <i class="icofont-search-1"></i>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="widget">
                   <h3 class="widget-title">Causes Categories</h3>
                   <div class="separator-line">
-                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-Givest">
+                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-safar">
                   </div>
                   <div class="widget-category">
-                    <a href="causes-details.html">Clean Water <span>(18)</span></a>
-                    <a href="causes-details.html">Children Education <span>(06)</span></a>
-                    <a href="causes-details.html">Healty Food <span>(19)</span></a>
-                    <a href="causes-details.html">Food And Water <span>(27)</span></a>
-                    <a href="causes-details.html">National Charity <span>(27)</span></a>
+                    <a href="{% url 'causes' %}?category=MEDICAL">MEDICAL <span>(18)</span></a>
+                    <a href="{% url 'causes' %}?category=LITERACY AND EDUCATION">LITERACY AND EDUCATION <span>(06)</span></a>
+                    <a href="{% url 'causes' %}?category=HUMAN RIGHTS">HUMAN RIGHTS<span>(19)</span></a>
+                    <a href="{% url 'causes' %}?category=PHYSICAL HELP">PHYSICAL HELP <span>(27)</span></a>
+                    <a href="{% url 'causes' %}?category=POVERTY">POVERTY <span>(27)</span></a>
+                    <a href="{% url 'causes' %}?category=OTHER">OTHER <span>(27)</span></a>                    
                   </div>
                 </div>
                 <div class="widget">
                   <h3 class="widget-title">Urgent Causes</h3>
                   <div class="separator-line">
-                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-Givest">
+                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-safar">
                   </div>
                   <div class="widget-causes-item">
                     <div class="thumb">
-                      <img src="{% static 'img/causes/w1.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/causes/w1.jpg'%}" alt="safar-HasTech">
                     </div>
                     <div class="content">
                       <h4 class="title"><a href="causes-details.html">Need School For Uganda Poor Children.</a></h4>
@@ -342,39 +209,13 @@
                           <div class="progress-bar-line" data-percent="75%"><span class="percent"></span></div>
                         </div>
                       </div>
-                      <form action="#">
-                        <div class="amount-info">
-                          <div class="donate-amount">₹20</div>
-                          <div class="donate-amount">₹35</div>
-                          <div class="donate-amount">₹48</div>
-                          <div class="donate-amount me-0">₹90</div>
-                          <div class="donate-amount donate-custom-amount">
-                            <input class="form-control" type="text" placeholder="Custome Amount">
-                          </div>
-                        </div>
+                      
                         <a class="btn-theme btn-gradient btn-slide" href="#"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></span></a>
-                      </form>
+                      
                     </div>
                   </div>
                 </div>
-                <div class="widget mb-0 pb-3">
-                  <h3 class="widget-title">Popular Tags</h3>
-                  <div class="separator-line">
-                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-Givest">
-                  </div>
-                  <div class="widget-tags">
-                    <ul>
-                      <li><a href="#/">Clean Water</a></li>
-                      <li><a href="#/">Education</a></li>
-                      <li><a class="style2" href="#/">Health</a></li>
-                      <li><a class="style2" href="#/">Medicine</a></li>
-                      <li><a href="#/">Poor</a></li>
-                      <li><a href="#/">Children</a></li>
-                      <li><a class="style2" href="#/">Charity</a></li>
-                      <li><a class="style2" href="#/">Non Profit</a></li>
-                    </ul>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -383,7 +224,6 @@
     </section>
     <!--== End Causes Area ==-->
   </main>
-
   <!--== Start Footer Area Wrapper ==-->
   <footer class="footer-area">
     <div class="footer-main">
@@ -410,37 +250,37 @@
                 <div class="row row-cols-3 row-gutter-10">
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery1.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery1.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery2.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery2.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery3.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery3.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery4.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery4.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery5.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery5.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery6.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery6.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
@@ -452,30 +292,16 @@
             <div class="widget-item menu-wrap-two-column">
               <h4 class="widget-title line-style">Quick Links</h4>
               <nav class="widget-menu-wrap">
-                <div class="row">
-                  <div class="col-6 col-sm-6 col-md-6 pr-sm-5">
                     <ul class="nav-menu nav">
-                      <li><a href="about.html">About Us</a></li>
-                      <li><a href="blog.html">Blog Post Terms</a></li>
+                      <li><a href="{% url 'about' %}">About Us</a></li>
+                      <li><a href="#/">Blog Post Terms</a></li>
                       <li><a href="#/">Conditions</a></li>
                       <li><a href="#/">Privacy Policy</a></li>
                       <li><a href="#/">Documentation</a></li>
-                      <li><a href="#/">Donners</a></li>
                     </ul>
                   </div>
-                  <div class="col-6 col-sm-6 col-md-6 pl-sm-5">
-                    <ul class="nav-menu nav align-right">
-                      <li><a href="volunteer.html">Become Volunteer</a></li>
-                      <li><a href="#/">Quick Fundraise</a></li>
-                      <li><a href="#/">Give Donation</a></li>
-                      <li><a href="volunteer.html">Become Volunteer</a></li>
-                      <li><a href="causes-details.html">Food And Water</a></li>
-                      <li><a href="causes-details.html">Medical facilities</a></li>
-                    </ul>
-                  </div>
-                </div>
+                  
               </nav>
-            </div>
           </div>
         </div>
       </div>
@@ -496,7 +322,7 @@
       </div>
     </div>
     <div class="shape-layer">
-      <img src="{% static 'img/shape/footer-line.png'%}" alt="Image-Givest">
+      <img src="{% static 'img/shape/footer-line.png'%}" alt="Image-safar">
     </div>
   </footer>
   <!--== End Footer Area Wrapper ==-->
@@ -531,6 +357,60 @@
     </div>
   </aside>
   <!--== End Side Menu ==-->  
+</div>
+<!-- Modal -->
+<div class="modal fade " id="AddProduct" tabindex="-1" role="dialog" aria-labelledby="AddProductTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered col-md-3" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title navbar-brand" style="font-size: 25px;" id="ModalTitle">NEW PRODUCT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+		<form action="{{window.location.href}}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+      <div class="modal-body">
+      Request Id: 
+        <input class="form-control mb-2" id="requestId" type="text" value = {{request.id}} readonly>
+		  <div class="row">
+			<div class="col">
+			  <div class="form-group">
+				<input class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+			  </div>
+			</div>
+
+			  <div class="col">
+				  	<div class="form-group" style="display: inline-block; float: left">
+						<input class="form-control" id="remaining" type="text" value = {{request.remaining}} readonly>
+		  			</div>
+			  </div>
+		    </div>
+        
+		  <div class="form-group">
+			<input class="form-control" id="card-details" name="card-details" placeholder="Enter card details" >
+		  </div>
+      <div class="row">
+			<div class="col">
+			  <div class="form-group">
+				<input class="form-control" id="cvv" name="cvv" placeholder="Enter cvv" >
+			  </div>
+			</div>
+
+			  <div class="col">
+				  	<div class="form-group" style="display: inline-block; float: left">
+						<input class="form-control" id="expiry" name="expiry" placeholder="Enter expiry" >
+		  			</div>
+			  </div>
+		    </div>
+      
+			  <div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+		</form>
+	</div>
+
+	</div>
 </div>
 
 <!--=======================Javascript============================-->
@@ -569,6 +449,7 @@
 
 <!--=== Custom Js ===-->
 <script  src="{% static 'js/custom.js'%}"></script>
+
 
 </body>
 

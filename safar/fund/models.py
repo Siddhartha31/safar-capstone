@@ -61,6 +61,37 @@ class Request(models.Model):
     
     def __str__(self):
         return str(self.id)
+
+    
+    @property
+    def remaining(self):
+        rem = self.amount-self.collected
+        return rem
+
+    def percent(self):
+        rem = self.collected/self.amount
+        return rem*100
+
+    @property
+    def dpimage(self):
+        cat = self.request_category
+        if cat == 'MEDICAL':
+            img = '011'
+        elif cat == 'LITERACY AND EDUCATION':
+            img = '022'
+        elif cat == 'HUMAN RIGHTS':
+            img = '033'
+        elif cat == 'PHYSICAL HELP':
+            img = '044'
+        elif cat == 'POVERTY':
+            img = '055'
+        elif cat == 'OTHER':
+            img = '066'
+        else:
+            img = '077'
+        return img
+
+
     
     def image1URL(self):
         try:

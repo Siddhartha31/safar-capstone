@@ -115,14 +115,33 @@ def contact(request):
 @login_required(login_url='Signin')
 @allowed_users(allowed_roles=['Account'])
 def causes(request):
-    context={}
-    return render(request, 'fund/causes.html', context)
+    category = request.GET.get("category", "")
+    if category:
+        req = Request.objects.all().filter(status='ACCEPTED')
+        req = req.filter(request_category=category)
+    else:
+        req = Request.objects.all().filter(status='ACCEPTED')
+    params = {
+        "requests": req
+    }
+    return render(request, 'fund/causes.html', params)
 
 @login_required(login_url='Signin')
 @allowed_users(allowed_roles=['Account'])
-def causes_details(request):
+def causes_details(request, pk):
+    if request.method == 'POST':
+	    return redirect('payment')
+    req = Request.objects.get(id=pk)
+    params = {
+        "request": req
+    }
+    return render(request, 'fund/causes-details.html', params)
+
+
+def payment(request):
     context={}
-    return render(request, 'fund/causes-details.html', context)
+    return render(request, 'fund/payment.html', context)
+
 
 @login_required(login_url='AdminSignin')
 @allowed_users(allowed_roles=['Admin'])

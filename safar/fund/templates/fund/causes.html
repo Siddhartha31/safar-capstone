@@ -69,7 +69,9 @@
               <ul class="main-menu nav justify-content-center">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a  href="{% url 'about' %}">About Us</a></li>
-                <li class="active"><a  href="{% url 'causes' %}">Causes</a></li>
+                <li class="nav-item dropdown active">
+                  <a  href="{% url 'causes' %}">Causes</a>
+                </li>
                 <li><a  href="{% url 'contact' %}">Contact Us</a></li>
               </ul>
             </div>
@@ -79,7 +81,7 @@
                 <span></span>
                 <span></span>
               </button>
-              <a href="{% url 'Signin' %}" class="btn-theme btn-gradient btn-slide btn-style">Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
+              <a href="{% url 'Signout' %}" class="btn-theme btn-gradient btn-slide btn-style"> Sign-Out <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
             </div>
           </div>
         </div>
@@ -96,7 +98,7 @@
           <div class="col-lg-12">
             <div class="page-title-content text-center">
               <h2 class="title text-white">Causes</h2>
-              <div class="bread-crumbs"><a href="index.html">Home<span class="breadcrumb-sep">//</span></a><span class="active">Causes</span></div>
+              <div class="bread-crumbs"><a href="{% url 'index' %}">Home<span class="breadcrumb-sep">//</span></a><span class="active">Causes</span></div>
             </div>
           </div>
         </div>
@@ -107,193 +109,42 @@
     <!--== Start Causes Area ==-->
     <section class="causes-area causes-default-area">
       <div class="container">
-        <div class="row">
+      <div class="row">
+        {% for request in requests %}
           <div class="col-md-6 col-lg-4">
             <div class="causes-item mb-30">
               <div class="thumb">
-                <img src="{% static 'img/causes/011.jpg'%}" alt="Givest-HasTech">
+                <img src="{% static '/img/causes/'%}{{request.dpimage}}.jpg" alt="safar-HasTech" style="width: 370px; height: 200px;">
               </div>
               <div class="content">
                 <ul class="donate-info">
                   <li class="info-item">
                     <span class="info-title">Goal:</span>
-                    <span class="amount">₹ 5,000</span>
+                    <p class="amount">₹ {{request.amount}}</p>
                   </li>
                   <li class="info-item">
                     <span class="info-title">Raised:</span>
-                    <span class="amount">₹ 2,000</span>
+                    <p class="amount">₹ {{request.collected}}</p>
                   </li>
                   <li class="info-item">
                     <span class="info-title">To Go:</span>
-                    <span class="amount">₹ 1,000</span>
+                    
+                    <p class="amount">₹ {{request.remaining}}</p>
                   </li>
                 </ul>
-                <h4 class="title"><a href="{% url 'causes-details' %}">Children Education Needs For Change The World.</a></h4>
+                <h5 class="title"><a href="{% url 'causes' %}{{request.id}}">{{request.request_category}}</a></h5>
+                <p><b>Deadline:&nbsp</b>&nbsp{{request.deadline}}.</p>
                 <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
               </div>
               <div class="causes-footer">
                 <div class="admin">
-                  <h5><a href="{% url 'causes' %}"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span> Kristin Horton</a></h5>
+                  <h5><a href="{% url 'causes' %}"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span>{{request.account_id}}</a></h5>
                 </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="SignIn_SignUp_pages/Sign in.html"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></span></a>
+                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="{% url 'causes' %}{{request.id}}"><span><p>Donate Now<img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></p></span></a>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="causes-item mb-30">
-              <div class="thumb">
-                <img src="{% static 'img/causes/022.jpg'%}" alt="Givest-HasTech">
-              </div>
-              <div class="content">
-                <ul class="donate-info">
-                  <li class="info-item">
-                    <span class="info-title">Goal:</span>
-                    <span class="amount">₹ 5,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">Raised:</span>
-                    <span class="amount">₹ 2,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">To Go:</span>
-                    <span class="amount">₹ 1,000</span>
-                  </li>
-                </ul>
-                <h4 class="title"><a href="{% url 'causes-details' %}">Children Education Needs For Change The World.</a></h4>
-                <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
-              </div>
-              <div class="causes-footer">
-                <div class="admin">
-                  <h5><a href="#/"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span> Kristin Horton</a></h5>
-                </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="SignIn_SignUp_pages/Sign in.html"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="causes-item mb-30">
-              <div class="thumb">
-                <img src="{% static 'img/causes/033.jpg'%}" alt="Givest-HasTech">
-              </div>
-              <div class="content">
-                <ul class="donate-info">
-                  <li class="info-item">
-                    <span class="info-title">Goal:</span>
-                    <span class="amount">₹ 5,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">Raised:</span>
-                    <span class="amount">₹ 2,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">To Go:</span>
-                    <span class="amount">₹ 1,000</span>
-                  </li>
-                </ul>
-                <h4 class="title"><a href="{% url 'causes-details' %}">Children Education Needs For Change The World.</a></h4>
-                <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
-              </div>
-              <div class="causes-footer">
-                <div class="admin">
-                  <h5><a href="#/"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span> Kristin Horton</a></h5>
-                </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="SignIn_SignUp_pages/Sign in.html"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="causes-item mb-30">
-              <div class="thumb">
-                <img src="{% static 'img/causes/022.jpg'%}" alt="Givest-HasTech">
-              </div>
-              <div class="content">
-                <ul class="donate-info">
-                  <li class="info-item">
-                    <span class="info-title">Goal:</span>
-                    <span class="amount">₹ 5,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">Raised:</span>
-                    <span class="amount">₹ 2,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">To Go:</span>
-                    <span class="amount">₹ 1,000</span>
-                  </li>
-                </ul>
-                <h4 class="title"><a href="{% url 'causes-details' %}">Children Education Needs For Change The World.</a></h4>
-                <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
-              </div>
-              <div class="causes-footer">
-                <div class="admin">
-                  <h5><a href="#/"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span> Kristin Horton</a></h5>
-                </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="SignIn_SignUp_pages/Sign in.html"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="causes-item mb-30">
-              <div class="thumb">
-                <img src="{% static 'img/causes/033.jpg'%}" alt="Givest-HasTech">
-              </div>
-              <div class="content">
-                <ul class="donate-info">
-                  <li class="info-item">
-                    <span class="info-title">Goal:</span>
-                    <span class="amount">₹ 5,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">Raised:</span>
-                    <span class="amount">₹ 2,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">To Go:</span>
-                    <span class="amount">₹ 1,000</span>
-                  </li>
-                </ul>
-                <h4 class="title"><a href="{% url 'causes-details' %}"">Children Education Needs For Change The World.</a></h4>
-                <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
-              </div>
-              <div class="causes-footer">
-                <div class="admin">
-                  <h5><a href="#/"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span> Kristin Horton</a></h5>
-                </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="SignIn_SignUp_pages/Sign in.html"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="causes-item mb-30">
-              <div class="thumb">
-                <img src="{% static 'img/causes/011.jpg'%}" alt="Givest-HasTech">
-              </div>
-              <div class="content">
-                <ul class="donate-info">
-                  <li class="info-item">
-                    <span class="info-title">Goal:</span>
-                    <span class="amount">₹ 5,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">Raised:</span>
-                    <span class="amount">₹ 2,000</span>
-                  </li>
-                  <li class="info-item">
-                    <span class="info-title">To Go:</span>
-                    <span class="amount">₹ 1,000</span>
-                  </li>
-                </ul>
-                <h4 class="title"><a href="{% url 'causes-details' %}"">Children Education Needs For Change The World.</a></h4>
-                <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
-              </div>
-              <div class="causes-footer">
-                <div class="admin">
-                  <h5><a href="{% url 'causes' %}"><span class="icon-img"><img  src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span> Kristin Horton</a></h5>
-                </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="SignIn_SignUp_pages/Sign in.html"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></span></a>
-              </div>
-            </div>
-          </div>
+        {% endfor %}
         </div>
       </div>
     </section>
@@ -306,14 +157,14 @@
           <div class="col-sm-6 col-md-4 funfact-item">
             <div class="inner-content">
               <div class="icon-box">
-                <img class="icon" src="{% static 'img/icons/f1.png'%}" alt="Image-Givest">
-                <img class="shape-img"  src="{% static 'img/shape/4.png'%}" alt="Image-Givest">
+                <img class="icon" src="{% static 'img/icons/f1.png'%}" alt="Image-safar">
+                <img class="shape-img"  src="{% static 'img/shape/4.png'%}" alt="Image-safar">
               </div>
               <div class="content">
                 <div class="number">
-                  <h2><span class="counter-animate">598</span>K</h2>
+                  <h2><span class="counter-animate">100</span>K</h2>
                 </div>
-                <img class="line-shape" src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-Givest">
+                <img class="line-shape" src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-safar">
                 <p class="title">// Poor People</p>
               </div>
             </div>
@@ -321,14 +172,14 @@
           <div class="col-sm-6 col-md-4 funfact-item">
             <div class="inner-content">
               <div class="icon-box">
-                <img class="icon"  src="{% static 'img/icons/f2.png'%}" alt="Image-Givest">
-                <img class="shape-img" src="{% static 'img/shape/4.png'%}" alt="Image-Givest">
+                <img class="icon"  src="{% static 'img/icons/f2.png'%}" alt="Image-safar">
+                <img class="shape-img" src="{% static 'img/shape/4.png'%}" alt="Image-safar">
               </div>
               <div class="content">
                 <div class="number">
-                  <h2><span class="counter-animate">897</span>M</h2>
+                  <h2><span class="counter-animate">100</span>M</h2>
                 </div>
-                <img class="line-shape" src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-Givest">
+                <img class="line-shape" src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-safar">
                 <p class="title">// Fund raised</p>
               </div>
             </div>
@@ -336,14 +187,14 @@
           <div class="col-sm-6 col-md-4 funfact-item">
             <div class="inner-content">
               <div class="icon-box">
-                <img class="icon"  src="{% static 'img/icons/f3.png'%}" alt="Image-Givest">
-                <img class="shape-img"  src="{% static 'img/shape/4.png'%}" alt="Image-Givest">
+                <img class="icon"  src="{% static 'img/icons/f3.png'%}" alt="Image-safar">
+                <img class="shape-img"  src="{% static 'img/shape/4.png'%}" alt="Image-safar">
               </div>
               <div class="content">
                 <div class="number">
-                  <h2><span class="counter-animate">998</span>+</h2>
+                  <h2><span class="counter-animate">100</span>+</h2>
                 </div>
-                <img class="line-shape"  src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-Givest">
+                <img class="line-shape"  src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-safar">
                 <p class="title">// Active Member</p>
               </div>
             </div>
@@ -353,138 +204,8 @@
     </section>
     <!--== End Funfact Area ==-->
 
-    <!--== Start Testimonial Area ==-->
-    <!-- <section class="testimonial-area testimonial-default-area bgcolor-theme3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-lg-4 col-xl-5">
-            <div class="title-wrp" data-bg-img="assets/img/testimonial/bg-testi1.jpg">
-              <div class="section-title">
-                <h5 class="subtitle line-white-color text-white mb-7">Recent Events</h5>
-                <h2 class="title title-style text-white">What People Say About Us. <img class="img-shape" src="assets/img/shape/3.png" alt="Image-Givest"></h2>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 col-lg-7 col-xl-6">
-            <div class="testimonial-content">
-              <div class="testimonial-slider-content">
-                <div class="swiper-container testimonial-slider-container">
-                  <div class="swiper-wrapper testimonial-slider">
-                    <div class="swiper-slide testimonial-single">
-                      <div class="client-thumb-wrp">
-                        <div class="client-thumb">
-                          <img src="assets/img/testimonial/1.png" alt="Image-Givest">
-                        </div>
-                        <div class="quote-icon">“</div>
-                      </div>
-                      <div class="client-content">
-                        <p>The leap into electronic typesetting, essentially unchanged was popularised the release Letraset sheets containing and more recently desktop publishing like Aldus maker including.</p>
-                      </div>
-                      <div class="client-info">
-                        <img class="shape-line-img" src="assets/img/shape/line-t1.png" alt="Image-Givest">
-                        <h4 class="name">Harvey Harrington</h4>
-                        <h6 class="designation">Senior Volunteer</h6>
-                      </div>
-                    </div>
-                    <div class="swiper-slide testimonial-single">
-                      <div class="client-thumb-wrp">
-                        <div class="client-thumb">
-                          <img src="assets/img/testimonial/2.png" alt="Image-Givest">
-                        </div>
-                        <div class="quote-icon">“</div>
-                      </div>
-                      <div class="client-content">
-                        <p>It is long established fact that reader will distract by the readable content a page when looking atten layout. The point of using  and that it has a normal distribution of letters</p>
-                      </div>
-                      <div class="client-info">
-                        <img class="shape-line-img" src="assets/img/shape/line-t1.png" alt="Image-Givest">
-                        <h4 class="name">Julia Steve</h4>
-                        <h6 class="designation">Senior Volunteer</h6>
-                      </div>
-                    </div>
-                  </div>
-                 
-                  <div class="navigation-wrp">
-                    <div class="swiper-button-prev"><img class="icon-img" src="assets/img/icons/test-arrow-left.png" alt="Image-Icon"></div>
-                    <div class="swiper-button-next"><img class="icon-img" src="assets/img/icons/test-arrow-right.png" alt="Image-Icon"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!--== End Testimonial Area ==-->
-
     <!--== Start Brand Logo Area ==-->
-    <section class="brand-logo-area brand-logo-default-area">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-4 offset-lg-0 col-xl-4">
-            <div class="section-title text-center text-lg-start">
-              <h2 class="title title-style mt-xl-30">Our Current Sponsors. <img class="img-shape"  src="{% static 'img/shape/3.png'%}" alt="Image-Givest"></h2>
-            </div>
-          </div>
-          <div class="col-lg-8 col-xl-7 offset-xl-1">
-            <div class="brand-logo-content">
-              <div class="row row-cols-3 row-cols-sm-5">
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img src="{% static 'img/brand-logo/11.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img src="{% static 'img/brand-logo/22.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img  src="{% static 'img/brand-logo/33.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img src="{% static 'img/brand-logo/44.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img  src="{% static 'img/brand-logo/55.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img  src="{% static 'img/brand-logo/66.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img src="{% static 'img/brand-logo/77.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img src="{% static 'img/brand-logo/88.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img  src="{% static 'img/brand-logo/99.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="brand-logo-item">
-                    <img  src="{% static 'img/brand-logo/101.png'%}" alt="Image-Givest">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!--== End Brand Logo Area ==-->
   </main>
 
@@ -514,37 +235,37 @@
                 <div class="row row-cols-3 row-gutter-10">
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery1.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery1.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery2.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery2.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery3.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery3.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery4.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery4.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery5.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery5.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="gallery-item">
-                      <img src="{% static 'img/photos/gallery6.jpg'%}" alt="Givest-HasTech">
+                      <img src="{% static 'img/photos/gallery6.jpg'%}" alt="safar-HasTech">
                       <a class="icon" href="#/"><i class="icofont-instagram"></i></a>
                     </div>
                   </div>
@@ -573,8 +294,8 @@
                       <li><a href="#/">Quick Fundraise</a></li>
                       <li><a href="#/">Give Donation</a></li>
                       <li><a href="#/">Become Volunteer</a></li>
-                      <li><a href="{% url 'causes-details' %}">Food And Water</a></li>
-                      <li><a href="{% url 'causes-details' %}">Medical facilities</a></li>
+                      <li><a href="{% url 'causes' %}">Food And Water</a></li>
+                      <li><a href="{% url 'causes' %}">Medical facilities</a></li>
                     </ul>
                   </div>
                 </div>
@@ -600,7 +321,7 @@
       </div>
     </div>
     <div class="shape-layer">
-      <img  src="{% static 'img/shape/footer-line.png'%}" alt="Image-Givest">
+      <img  src="{% static 'img/shape/footer-line.png'%}" alt="Image-safar">
     </div>
   </footer>
   <!--== End Footer Area Wrapper ==-->
