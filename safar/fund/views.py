@@ -112,6 +112,41 @@ def contact(request):
     context={}
     return render(request, 'fund/contact.html', context)
 
+
+@login_required(login_url='Signin')
+@allowed_users(allowed_roles=['Account'])
+def profile(request):
+    if request.method == 'POST':
+        print(request.POST)
+        acc = Account.objects.get(username=request.user)
+        request_category = request.POST['category']
+        amount = request.POST['amount']
+        deadline = request.POST['deadline']
+        desc = request.POST['desc']
+        identityImage = request.FILES['image']
+        image1 = request.FILES['image1']
+        image2 = request.FILES['image2']
+        req = Request(  account_id=acc,
+                        request_category=request_category,
+                        amount=amount,
+                        deadline=deadline,
+                        desc=desc,
+                        identity_image=identityImage,
+                        image1=image1,
+                        image2=image2
+                        )
+        req.save()
+
+
+    acc = Account.objects.get(username=request.user)
+    req = Request.objects.all().filter(account_id=acc)
+    params = {
+        "account": acc,
+        "requests": req
+    }
+    return render(request, 'fund/profile.html', params)
+
+
 @login_required(login_url='Signin')
 @allowed_users(allowed_roles=['Account'])
 def causes(request):
@@ -130,7 +165,12 @@ def causes(request):
 @allowed_users(allowed_roles=['Account'])
 def causes_details(request, pk):
     if request.method == 'POST':
-        print(request)
+        requestId = request.POST['requestId']
+        donation = request.POST['amount']
+        req = Request.objects.get(id=requestId)
+        amount = req.collected + float(donation)
+        req.collected=amount
+        req.save()
         return redirect('payment')
     req = Request.objects.get(id=pk)
     params = {

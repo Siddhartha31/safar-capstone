@@ -55,9 +55,9 @@ class Request(models.Model):
     image1 = models.ImageField(upload_to=get_file_address, null=True, blank=True)
     image2 = models.ImageField(upload_to=get_file_address, null=True, blank=True)
     deadline = models.DateField()
-    status = models.CharField(max_length=50, default="PENDING", choices=STATUS)
+    status = models.CharField(max_length=50, default="PENDING", blank=True, choices=STATUS)
     pub_date = models.DateTimeField(default=now)
-    admin_msg = models.CharField(max_length=200, default='none',null=True)
+    admin_msg = models.CharField(max_length=200, default='none', null=True, blank=True)
     
     def __str__(self):
         return str(self.id)

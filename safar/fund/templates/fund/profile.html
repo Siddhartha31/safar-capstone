@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Causes Details – SAFAR</title>
+    <title>Profile – SAFAR </title>
 
     <!--== Favicon ==-->
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"  type="image/x-icon" />
@@ -19,8 +19,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!--== Bootstrap CSS ==-->
 
+    <!--== Bootstrap CSS ==-->
     <link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
     <!--== Icofont CSS ==-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/icofont.css' %}">
@@ -44,7 +44,7 @@
 <body>
 
 <!--wrapper start-->
-<div class="wrapper causes-details-page-wrapper">
+<div class="wrapper about-page-wrapper">
 
   <!--== Start Preloader Content ==-->
   <div class="preloader">
@@ -54,7 +54,8 @@
             </div>
         </div>
   <!--== End Preloader Content ==-->
-<!--== Start Header Wrapper ==-->
+
+  <!--== Start Header Wrapper ==-->
   <header class="header-area header-default sticky-header">
     <div class="container">
       <div class="row align-items-center">
@@ -71,9 +72,8 @@
             <div class="header-navigation-area">
               <ul class="main-menu nav justify-content-center">
                 <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a  href="{% url 'about' %}">About Us</a></li>
-                <li class="nav-item dropdown active">
-                  <li class="has-submenu nav-item dropdown active"><a href="{% url 'causes' %}">Causes</a>
+                <li class="active"><a  href="{% url 'about' %}">About Us</a></li>
+                <li class="has-submenu"><a href="{% url 'causes' %}">Causes</a>
                   <ul class="submenu-nav">
                     <li><a href="{% url 'causes' %}">All</a></li>
                     <li><a href="{% url 'causes' %}?category=MEDICAL">MEDICAL</a></li>
@@ -84,13 +84,10 @@
                     <li><a href="{% url 'causes' %}?category=OTHER">OTHER</a></li>
                   </ul>
                 </li>
-                </li>
                 <li><a  href="{% url 'contact' %}">Contact Us</a></li>
-                <li class="active">
-                <a href="{% url 'profile' %}" class="nav-link  user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  Profile
-                </a></li>
+                <li class="active"><a href="{% url 'profile' %}" class="nav-link  user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    Profile</a></li>
               </ul>
             </div>
             <div class="header-action-area">
@@ -99,7 +96,7 @@
                 <span></span>
                 <span></span>
               </button>
-              <a href="{% url 'Signout' %}" class="btn-theme btn-gradient btn-slide btn-style">Sign-Out <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
+              <a href="{% url 'Signin' %}" class="btn-theme btn-gradient btn-slide btn-style">Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></a>
             </div>
           </div>
         </div>
@@ -107,17 +104,19 @@
     </div>
   </header>
   <!--== End Header Wrapper ==-->
-
+  
   <main class="main-content site-wrapper-reveal">
     <!--== Start Page Title Area ==-->
     <section class="page-title-area" data-bg-img="{% static 'img/photos/bg-page-title.jpg'%}">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="page-title-content text-center">
-              <h2 class="title text-white">Causes Details</h2>
-              <div class="bread-crumbs"><a href="{% url 'index' %}">Home<span class="breadcrumb-sep">//</span></a><span class="active">Causes//{{request.id}}</span></div>
-              
+            <div class="page-title-content text-center" text-transform: uppercase;>
+              <h3 class="text-white">{{account.fullname}}</h3>
+              <a href="index.html"><img src="{% static 'img/logo-light.png'%}" alt="Logo" /></a>
+              <div class="bread-crumbs">User ID: <span class="breadcrumb-sep">{{account.id}}</span></div>
+              <div class="bread-crumbs">UserName: <span class="breadcrumb-sep">{{account.username}}</span></div>
+              <div class="bread-crumbs">Email: <span class="breadcrumb-sep">{{account.email}}</span></div>
             </div>
           </div>
         </div>
@@ -125,121 +124,131 @@
     </section>
     <!--== End Page Title Area ==-->
 
-    <!--== Start Causes Area ==-->
-    <section class="causes-details-area">
+    <!--== Start About Area ==-->
+    <section class="about-area">
       <div class="container">
+      <a class="btn-theme btn-gradient btn-slide btn-style text-white" data-toggle="modal" data-target="#AddProduct">Create Request +</a> 
         <div class="row">
-          <div class="col-12">
-            <div class="causes-details-column">
-              <div class="causes-details-content">
-                <div class="causes-details">
-                  <div class="thumb">
-                    <img class="w-100" src="{% static '/img/causes/' %}{{request.dpimage}}.jpg" alt="Image-safar" >
+          <div class="col-lg-8">
+            <div class="about-content">
+            </div>
+            <div class="content-box-wrp">
+              <div class="row">
+                <div class="col-lg-6">
                   </div>
-                  <h4 class="cause-title">Request Category: {{request.request_category}}.</h4>
+                </div>
+                <div class="col-lg-6">
                   
-                  <div class="donate-info-wrp">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <ul class="donate-info">
-                          <li class="info-item">
-                            <span class="info-title">Goal:</span>
-                            <span class="amount">₹ {{request.amount}}</span>
-                          </li>
-                          <li class="info-item">
-                            <span class="info-title">Raised:</span>
-                            <span class="amount">₹ {{request.collected}}</span>
-                          </li>
-                          <li class="info-item">
-                            <span class="info-title">To Go:</span>
-                            <span class="amount">₹ {{request.remaining}}</span>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="col-md-6">
-                        <!-- Start Progress Item -->
-                        <div class="progress-item">
-                          <div class="progress-line">
-                            <div class="progress-bar-line" data-percent="{{request.percent}}%"><span class="percent"></span></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <hr>
-                    <a class="btn-theme btn-gradient btn-slide btn-style" onclick="get_request_id({{request.id}})" data-toggle="modal" data-target="#AddProduct">Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon" ></a>
-                  </div>
-                  <span><b>Issued On:</b>&nbsp {{request.pub_date}}</span><br>
-                  <span><b>Deadline:</b>&nbsp{{request.deadline}}</span><hr>
-                  <h4>Cause Description:</h4>
-                  <p>{{request.desc}}</p>
-                  <h4>Supporting Documents:</h4>
-                  <div class="gallery text-center">
-                      <img alt="image-gallery" src="/supporting/{{request.identity_image}}" class="img-fluid mb-4 mt-4" style="width: 220px; height: 220px;">&nbsp                                                        
-                      <img alt="image-gallery" src="/supporting/{{request.image1}}" class="img-fluid mb-4 mt-4" style="width: 220px; height: 220px;">&nbsp
-                      <img alt="image-gallery" src="/supporting/{{request.image2}}" class="img-fluid mb-4 mt-4" style="width: 220px; height: 220px;">&nbsp
-                  </div>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500 an when
-                   an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 </div>
-                
-              </div>
-              <div class="sidebar-area">
-                <div class="widget">
-                  <h3 class="widget-title">Causes Categories</h3>
-                  <div class="separator-line">
-                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-safar">
-                  </div>
-                  <div class="widget-category">
-                    <a href="{% url 'causes' %}?category=MEDICAL">MEDICAL <span>(18)</span></a>
-                    <a href="{% url 'causes' %}?category=LITERACY AND EDUCATION">LITERACY AND EDUCATION <span>(06)</span></a>
-                    <a href="{% url 'causes' %}?category=HUMAN RIGHTS">HUMAN RIGHTS<span>(19)</span></a>
-                    <a href="{% url 'causes' %}?category=PHYSICAL HELP">PHYSICAL HELP <span>(27)</span></a>
-                    <a href="{% url 'causes' %}?category=POVERTY">POVERTY <span>(27)</span></a>
-                    <a href="{% url 'causes' %}?category=OTHER">OTHER <span>(27)</span></a>                    
-                  </div>
-                </div>
-                <div class="widget">
-                  <h3 class="widget-title">Urgent Causes</h3>
-                  <div class="separator-line">
-                    <img class="me-1" src="{% static 'img/shape/line-t2.png'%}" alt="Image-safar">
-                  </div>
-                  <div class="widget-causes-item">
-                    <div class="thumb">
-                      <img src="{% static 'img/causes/022.jpg'%}" alt="safar-HasTech">
-                    </div>
-                    <div class="content">
-                      <h4 class="title"><a href="causes-details.html">Need School For Uganda Poor Children.</a></h4>
-                      <ul class="donate-info">
-                        <li class="info-item">
-                          <span class="info-title">Goal:</span>
-                          <span class="amount">₹ 5,000</span>
-                        </li>
-                        <li class="info-item">
-                          <span class="info-title">Raised:</span>
-                          <span class="amount">₹ 2,000</span>
-                        </li>
-                      </ul>
-                      <!-- Start Progress Item -->
-                      <div class="progress-item">
-                        <div class="progress-line">
-                          <div class="progress-bar-line" data-percent="75%"><span class="percent"></span></div>
-                        </div>
-                      </div>
-                      
-                        <a class="btn-theme btn-gradient btn-slide" href="#"><span>Donate Now <img class="icon icon-img" src="{% static 'img/icons/arrow-line-right2.png'%}" alt="Icon"></span></a>
-                      
-                    </div>
-                  </div>
-                </div>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--== End Causes Area ==-->
+    <!--== End About Area ==-->
+
+   
+    <!--== Start Brand Logo Area ==-->
+    <section class="">
+      <div class="container">
+      <div class="row">
+        {% for request in requests %}
+          <div class="col-md-6 col-lg-4">
+            <div class="causes-item mb-30">
+              <div class="thumb">
+                <img src="{% static '/img/causes/'%}{{request.dpimage}}.jpg" alt="safar-HasTech" style="width: 370px; height: 200px;">
+              </div>
+              <div class="content">
+                <ul class="donate-info">
+                  <li class="info-item">
+                    <span class="info-title">Goal:</span>
+                    <p class="amount">₹ {{request.amount}}</p>
+                  </li>
+                  <li class="info-item">
+                    <span class="info-title">Raised:</span>
+                    <p class="amount">₹ {{request.collected}}</p>
+                  </li>
+                  <li class="info-item">
+                    <span class="info-title">To Go:</span>
+                    
+                    <p class="amount">₹ {{request.remaining}}</p>
+                  </li>
+                </ul>
+                <h5 class="title"><a href="{% url 'causes' %}{{request.id}}">{{request.request_category}}</a></h5>
+                <p><b>Deadline:&nbsp</b>&nbsp{{request.deadline}}.</p>
+                <p>Lorem Ipsum is simply dummy text of the industry's since the unknown.</p>
+              </div>
+              <div class="causes-footer">
+                <div class="admin">
+                  <h5><a href="{% url 'causes' %}{{request.id}}"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span>{{request.account_id}}</a></h5>
+                </div>
+                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="{% url 'causes' %}{{request.id}}"><span><p>Donate Now<img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></p></span></a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </section><hr><br>
+    
+    <!--== Start Funfact Area ==-->
+    <section class="funfact-area funfact-default-area">
+      <div class="container">
+        <div class="row row-gutter-0 funfact-items-style1">
+          <div class="col-sm-6 col-md-4 funfact-item">
+            <div class="inner-content">
+              <div class="icon-box">
+                <img class="icon" src="{% static 'img/icons/f1.png'%}" alt="Image-safar">
+                <img class="shape-img"  src="{% static 'img/shape/4.png'%}" alt="Image-safar">
+              </div>
+              <div class="content">
+                <div class="number">
+                  <h2><span class="counter-animate">100</span>K</h2>
+                </div>
+                <img class="line-shape" src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-safar">
+                <p class="title">// Poor People</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 funfact-item">
+            <div class="inner-content">
+              <div class="icon-box">
+                <img class="icon"  src="{% static 'img/icons/f2.png'%}" alt="Image-safar">
+                <img class="shape-img" src="{% static 'img/shape/4.png'%}" alt="Image-safar">
+              </div>
+              <div class="content">
+                <div class="number">
+                  <h2><span class="counter-animate">100</span>M</h2>
+                </div>
+                <img class="line-shape" src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-safar">
+                <p class="title">// Fund raised</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 funfact-item">
+            <div class="inner-content">
+              <div class="icon-box">
+                <img class="icon"  src="{% static 'img/icons/f3.png'%}" alt="Image-safar">
+                <img class="shape-img"  src="{% static 'img/shape/4.png'%}" alt="Image-safar">
+              </div>
+              <div class="content">
+                <div class="number">
+                  <h2><span class="counter-animate">100</span>+</h2>
+                </div>
+                <img class="line-shape"  src="{% static 'img/shape/funfact-line1.png'%}" alt="Image-safar">
+                <p class="title">// Active Member</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Funfact Area ==-->
+
   </main>
+
+
   <!--== Start Footer Area Wrapper ==-->
   <footer class="footer-area">
     <div class="footer-main">
@@ -248,13 +257,10 @@
           <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
             <div class="widget-item">
               <div class="about-widget">
-                <a class="footer-logo" href="index.html">
-                  <img src="{% static 'img/logo.png'%}" alt="Logo">
-                </a>
-                <p>Lorem Ipsum is simply dummy text of the industry orem Ipsum has been the industry's since the when unknown.</p>
                 <div class="widget-total-raised">
-                  <h4 class="raised-title">Total Raised:</h4>
-                  <div class="raised-amount">₹8,965</div>
+                <a class="footer-logo" href="index.html">
+                  <img src="{% static 'img/logo.png'%}" alt="Logo" style="width: 286px; height: 102px;">
+                </a>
                 </div>
               </div>
             </div>
@@ -308,16 +314,30 @@
             <div class="widget-item menu-wrap-two-column">
               <h4 class="widget-title line-style">Quick Links</h4>
               <nav class="widget-menu-wrap">
+                <div class="row">
+                  <div class="col-6 col-sm-6 col-md-6 pr-sm-5">
                     <ul class="nav-menu nav">
-                      <li><a href="{% url 'about' %}">About Us</a></li>
-                      <li><a href="#/">Blog Post Terms</a></li>
+                      <li><a href="about.html">About Us</a></li>
+                      <li><a href="blog.html">Blog Post Terms</a></li>
                       <li><a href="#/">Conditions</a></li>
                       <li><a href="#/">Privacy Policy</a></li>
                       <li><a href="#/">Documentation</a></li>
+                      <li><a href="#/">Donners</a></li>
                     </ul>
                   </div>
-                  
+                  <div class="col-6 col-sm-6 col-md-6 pl-sm-5">
+                    <ul class="nav-menu nav align-right">
+                      <li><a href="SignIn_SignUp_pages/Sign up.html">Become Volunteer</a></li>
+                      <li><a href="#/">Quick Fundraise</a></li>
+                      <li><a href="#/">Give Donation</a></li>
+                      <li><a href="volunteer.html">Become Volunteer</a></li>
+                      <li><a href="causes-details.html">Food And Water</a></li>
+                      <li><a href="causes-details.html">Medical facilities</a></li>
+                    </ul>
+                  </div>
+                </div>
               </nav>
+            </div>
           </div>
         </div>
       </div>
@@ -352,7 +372,7 @@
         <!-- Off Canvas Header -->
         <div class="off-canvas-header">
           <div class="logo-area">
-            <a href="index.html"><img src="{% static 'img/logo.png'%}" alt="Logo" /></a>
+            <a href="{% url 'index' %}"><img src="{% static 'img/logo.png'%}" alt="Logo" /></a>
           </div>
           <div class="close-action">
             <button class="btn-close"><i class="icofont-close"></i></button>
@@ -374,12 +394,13 @@
   </aside>
   <!--== End Side Menu ==-->  
 </div>
+
 <!-- Modal -->
 <div class="modal fade " id="AddProduct" tabindex="-1" role="dialog" aria-labelledby="AddProductTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered col-md-3" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title navbar-brand" style="font-size: 25px;" id="ModalTitle">DONATION</h5>
+        <h5 class="modal-title navbar-brand" style="font-size: 25px;" id="ModalTitle">NEW REQUEST</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -387,57 +408,61 @@
 		  <form action="{{window.location.href}}" method="POST" enctype="multipart/form-data">
 			  {% csrf_token %}
         <div class="modal-body">
-          Request Id: 
+          <input class="form-control mb-2" type="text" name="username" value = {{request.user}} readonly>
           <div class="form-group">
-          <input class="form-control" id="requestId" name="requestId"  type="text" value = {{request.id}} readonly>
           </div>
-		      <div class="row">
-            <div class="col">
+          <div class="row">
+           <div class="col">
+			      <div class="form-group">
+				      <select class="form-control" id="Category" name="category">
+                <option>MEDICAL</option>
+                <option>LITERACY AND EDUCATION</option>
+                <option>HUMAN RIGHTS</option>
+                <option>PHYSICAL HELP</option>
+                <option>POVERTY</option>
+                <option>OTHER</option>
+              </select>
+			      </div>
+			    </div>
+          <div class="col">
               <div class="form-group">
               <input class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
               </div>
+          </div>
+              
+          </div>
+          <div class="form-group">
+              <span ><b>Deadline: &nbsp</b><input type="date" id="deadline" name="deadline"></span>
             </div>
+          <div class="form-group">
+            <textarea class="form-control" id="desc" name="desc" placeholder="Desc" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="image">Upload Identity</label>
+            <input type="file" class="form-control-file" name="image" id="image" accept="image/*"  required>
+          </div>
+          <div class="form-group">
+            <label for="image">Supporting Image</label>
+            <input type="file" class="form-control-file" name="image1" id="image1" accept="image/*"  required>
+          </div>
+          <div class="form-group">
+            <label for="image">Supporting Image II</label>
+            <input type="file" class="form-control-file" name="image2" id="image2" accept="image/*"  required>
+		      </div>
 
-            <div class="col">
-                <div class="form-group" style="display: inline-block; float: left">
-                <input class="form-control" id="remaining" type="text" value = {{request.remaining}} readonly>
-                </div>
-            </div>
-		      </div>
-        
-		      <div class="form-group">
-            <input class="form-control" id="card-details" name="card-details" placeholder="Enter card details" >
-		      </div>
-          <div class="row">
-			      <div class="col">
-			        <div class="form-group">
-				        <input class="form-control" id="cvv" name="cvv" placeholder="Enter cvv" >
-			        </div>
-			      </div>
-
-            <div class="col">
-                <div class="form-group" style="display: inline-block; float: left">
-                  <input class="form-control" id="expiry" name="expiry" type= "date" placeholder="Enter expiry" >
-                </div>
-            </div>
-		      </div>
-      
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
-        </div>
-		  </form>
-	  </div>
+        
+		</form>
 	</div>
+
+	</div>
+  </div>
 </div>
-<script>
-    function get_request_id(value)
-  {
-      $('#requestId').val(value)
-  }
-</script>
 
 <!--=======================Javascript============================-->
+
 <!--=== Modernizr Min Js ===-->
 <script src="{% static 'js/modernizr.js'%}"></script>
 <!--=== jQuery Min Js ===-->
@@ -473,7 +498,6 @@
 
 <!--=== Custom Js ===-->
 <script  src="{% static 'js/custom.js'%}"></script>
-
 
 </body>
 
