@@ -175,7 +175,7 @@
                     <p class="amount">₹ {{request.remaining}}</p>
                   </li>
                 </ul>
-                <h5 class="title"><a href="{% url 'causes' %}{{request.id}}">{{request.request_category}}</a></h5>
+                <h5 class="title"><a href="#">{{request.request_category}}</a></h5>
                 <p><b>Deadline:&nbsp</b>&nbsp{{request.deadline}}.</p>
                 <p><b>Status:&nbsp</b>&nbsp{{request.status}}</p>
                 <span><b>Description: &nbsp</b>{{request.desc}}</span><br>
@@ -183,10 +183,9 @@
               </div>
               <div class="causes-footer">
                 <div class="admin">
-                  <h5><a href="{% url 'causes' %}{{request.id}}"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span>{{request.account_id}}</a></h5>
+                  <h5><a href="#"><span class="icon-img"><img src="{% static 'img/icons/admin1.png'%}" alt="Icon"></span>{{request.account_id}}</a></h5>
                 </div>
-                <a class="btn-theme btn-border-gradient gray-border btn-size-md" href="{% url 'causes' %}{{request.id}}"><span><p>Donate Now<img class="icon icon-img" src="{% static 'img/icons/arrow-line-right-gradient.png'%}" alt="Icon"></p></span></a>
-              </div>
+                </div>
             </div>
           </div>
         {% endfor %}

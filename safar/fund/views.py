@@ -8,6 +8,7 @@ from django.contrib import messages
 from .models import *
 from .forms import CreateUserForm
 from django.db.models import Q
+from django.http import Http404
 
 
 @unauthenticated_user
@@ -167,12 +168,19 @@ def causes_details(request, pk):
     if request.method == 'POST':
         requestId = request.POST['requestId']
         donation = request.POST['amount']
-        req = Request.objects.get(id=requestId)
+        try:
+            req = Request.objects.get(id=requestId)
+        except Request.DoesNotExist:
+            raise Http404("Cause request does not exist")
         amount = req.collected + float(donation)
         req.collected=amount
         req.save()
         return redirect('payment')
-    req = Request.objects.get(id=pk)
+
+    try:
+        req = Request.objects.get(id=pk)
+    except Request.DoesNotExist:
+        raise Http404("Cause request does not exist")
     params = {
         "request": req
     }
